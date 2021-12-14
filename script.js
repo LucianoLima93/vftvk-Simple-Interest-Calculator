@@ -71,7 +71,7 @@ function mySlider() {
 
 function generateSelectTagValue() {
     const selectTag = document.getElementById("years");
-    for (let index = 0; index < 50; index++) {
+    for (let index = 0; index < 10; index++) {
         let option = document.createElement( 'option' );
         option.value = index + 1;
         option.innerText = option.value;
