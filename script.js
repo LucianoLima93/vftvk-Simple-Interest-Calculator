@@ -29,7 +29,7 @@ function compute(event)
         para.innerHTML = '<span class="error container-default">Please enter a positive number</span>';
         principal.focus();
     } else {
-        para.innerHTML = '<span class="error container-default">Please fill all required fields</span>'
+        para.innerHTML = '<span class="error container-default">Please enter a positive number</span>';
         principal.focus();
     }
     container.appendChild(para);
