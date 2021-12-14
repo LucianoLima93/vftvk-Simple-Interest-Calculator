@@ -11,7 +11,8 @@ para.classList.add('container-default');
 function compute(event)
 {
     event.preventDefault();
-    p = parseFloat(document.getElementById("principal").value, 10);
+    const principal = document.getElementById("principal");
+    p = parseFloat(principal.value, 10);
     r = parseFloat(document.getElementById("rate").value, 10);
     y = parseInt(document.getElementById("years").value, 10);
 
@@ -19,12 +20,17 @@ function compute(event)
     const result = (p * rate) * y
 
     const validateFields = verifyEmptyFields(p, r, y);
+    const moreThenZero = verifyNumberMoreThenZero(p);
     const container = document.getElementById("container");
 
-    if (validateFields) {
+    if (validateFields && moreThenZero) {
         para.innerHTML = setResult(p, r, result, y);
+    } else if(!moreThenZero && validateFields) {
+        para.innerHTML = '<span class="error container-default">Please enter a positive number</span>';
+        principal.focus();
     } else {
         para.innerHTML = '<span class="error container-default">Please fill all required fields</span>'
+        principal.focus();
     }
     container.appendChild(para);
 }
@@ -41,7 +47,12 @@ function getFutureYear (year) {
     date.setFullYear(futureYear)
     return date.getFullYear();
 }
-
+function verifyNumberMoreThenZero(p) {
+    if (!isNaN(p) && p > 0) {
+        return true
+    }
+    return false;
+}
 function verifyEmptyFields(p, r, y) {
     if (isNaN(p) || isNaN(r) || isNaN(y)) {
         return false;
