@@ -25,14 +25,16 @@ function compute(event)
 
     if (validateFields && moreThenZero) {
         para.innerHTML = setResult(p, r, result, y);
+        container.appendChild(para);
     } else if(!moreThenZero && validateFields) {
-        para.innerHTML = '<span class="error container-default">Please enter a positive number</span>';
+        alert('Please enter a positive number');
+        // para.innerHTML = '<span class="error container-default">Please enter a positive number</span>';
         principal.focus();
     } else {
-        para.innerHTML = '<span class="error container-default">Please enter a positive number</span>';
+        alert('Please enter a positive number');
+        // para.innerHTML = '<span class="error container-default">Please enter a positive number</span>';
         principal.focus();
     }
-    container.appendChild(para);
 }
 function setResult(principal, rate, result, year) {
     return `If you deposit <span class="highlight">${principal}</span><br/>
@@ -78,4 +80,16 @@ function generateSelectTagValue() {
         selectTag.appendChild(option);
         
     }
+}
+
+function reset(event) {
+    event.preventDefault();
+    const principal = document.getElementById("principal");
+    principal.value = null;
+    document.getElementById("rate").value = 1;
+    document.getElementById("years").value = 1;
+    mySlider();
+    principal.focus();
+    const container = document.getElementById("container");
+    container.removeChild(para);
 }
